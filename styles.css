@@ -1,132 +1,280 @@
+body {
+    background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    color: #3a3a3a;
+}
 
-        body {
-            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
-            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-            color: #3a3a3a;
-        }
-        .navbar {
-            background: #e6f2f0;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(60, 60, 60, 0.05);
-        }
-        .navbar-brand {
-            font-family: 'Pacifico', cursive;
-            font-weight: 700;
-            color: #6c7a89;
-            font-size: 2rem;
-            letter-spacing: 2px;
-        }
-        .nav-link {
-            color: #7b8fa1 !important;
-            font-weight: 500;
-            margin-right: 1rem;
-            transition: color 0.2s;
-        }
-        .nav-link:hover {
-            color: #a3c9c7 !important;
-        }
-        .hero {
-            background: linear-gradient(90deg, #e6f2f0 60%, #f5e6f7 100%);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 24px rgba(60, 60, 60, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 3rem;
-            color: #a3c9c7;
-            margin-bottom: 1rem;
-        }
-        .hero p {
-            font-size: 1.3rem;
-            color: #6c7a89;
-            margin-bottom: 2rem;
-        }
-        .hero .btn {
-            font-size: 1.1rem;
-            background: #a3c9c7;
-            color: #fff;
-            border-radius: 24px;
-            padding: 0.7rem 2rem;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(163, 201, 199, 0.15);
-        }
+.navbar {
+    background: #e6f2f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(60, 60, 60, 0.05);
+}
 
-        .btn-prime {
-            font-size: 1.1rem;
-            background: #a3c9c7;
-            color: #fff;
-            border-radius: 24px;
-            padding: 0.7rem 2rem;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(163, 201, 199, 0.15);
-        }
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-weight: 700;
+    color: #6c7a89;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
 
-        .main {
-            background: #f5f7fa;
-            border-radius: 18px;
-            padding: 2rem;
-            box-shadow: 0 2px 12px rgba(60, 60, 60, 0.07);
-            margin-bottom: 2rem;
-        }
-        .section-title {
-            color: #6c7a89;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        .card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(60, 60, 60, 0.07);
-            margin-bottom: 1.5rem;
-        }
-        .card-img-top {
-            border-radius: 16px 16px 0 0;
-            height: 180px;
-            object-fit: cover;
-        }
-        .card-title {
-            color: #a3c9c7;
-            font-weight: 600;
-        }
-        .info-box {
-            background: #e6f2f0;
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
-            color: #6c7a89;
-        }
-        .footer {
-            text-align: center;
-            color: #7b8fa1;
-            padding: 1rem 0;
-            font-size: 0.95rem;
-            background: #e6f2f0;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-        .social-icons a {
-            color: #a3c9c7;
-            font-size: 1.7rem;
-            margin: 0 0.5rem;
-            transition: color 0.2s;
-        }
-        .social-icons a:hover {
-            color: #6c7a89;
-        }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .main {
-                padding: 1rem;
-            }
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-        }
+.nav-link {
+    color: #7b8fa1 !important;
+    font-weight: 500;
+    margin-right: 1rem;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #a3c9c7 !important;
+}
+
+.hero {
+    background: linear-gradient(90deg, #e6f2f0 60%, #f5e6f7 100%);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(60, 60, 60, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    color: #a3c9c7;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: #6c7a89;
+    margin-bottom: 2rem;
+}
+
+.hero .btn {
+    font-size: 1.1rem;
+    background: #a3c9c7;
+    color: #fff;
+    border-radius: 24px;
+    padding: 0.7rem 2rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(163, 201, 199, 0.15);
+}
+
+.btn-prime {
+    font-size: 1.1rem;
+    background: #a3c9c7;
+    color: #fff;
+    border-radius: 24px;
+    padding: 0.7rem 2rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(163, 201, 199, 0.15);
+}
+
+.btn-box {
+    background: #a3c9c7;
+    color: #fff;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(163, 201, 199, 0.15);
+}
+
+.number-input {
+    background: #a3c9c7;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 0.4rem 0.4rem;
+    font-weight: 600;
+    width: 6.5rem;
+    text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.main {
+    background: #f5f7fa;
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(60, 60, 60, 0.07);
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    color: #6c7a89;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(60, 60, 60, 0.07);
+    margin-bottom: 1.5rem;
+}
+
+.card-img-top {
+    border-radius: 16px 16px 0 0;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-title {
+    color: #a3c9c7;
+    font-weight: 600;
+}
+
+.info-box {
+    background: #e6f2f0;
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    color: #6c7a89;
+}
+
+.footer {
+    text-align: center;
+    color: #7b8fa1;
+    padding: 1rem 0;
+    font-size: 0.95rem;
+    background: #e6f2f0;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.social-icons a {
+    color: #a3c9c7;
+    font-size: 1.7rem;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: #6c7a89;
+}
+
+#imageModal img {
+    width: 100%;
+    height: auto;
+}
+
+.food_section {
+    margin-top: 0;
+    padding: 25px;
+    background: #f5f2eb;
+    border-radius: 15px;
+}
+
+.food_section h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.food_placeholder {
+    min-height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: #f5f2eb;
+    border-radius: 15px;
+
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.food_placeholder i {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.food_placeholder h4 {
+    font-weight: 700;
+    color: #222;
+}
+
+.food_placeholder p {
+    max-width: 400px;
+    margin-bottom: 0;
+}
+
+.person_food_card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.person_header {
+    margin-bottom: 15px;
+}
+
+.person_header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.food_group {
+    margin-top: 15px;
+}
+
+.food_group h5 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.food_option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 12px;
+    margin-bottom: 6px;
+
+    background: #f5f2eb;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.food_option span {
+    flex: 1;
+}
+
+.food_option strong {
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .main {
+        padding: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}

@@ -1,12 +1,12 @@
 const GALLERY_DATA = {
-            "2025": [
-                { name: "Nyitó buli pillanatok", date: "2025.09.27.", path: "2025/img_4341.jpg" },
-                { name: "Fő színpad - Koncert", date: "2025.09.27.", path: "2025/img_6374.jpeg" },
-                { name: "Tábortűz és hangulat", date: "2025.09.27.", path: "2025/img_6152.jpeg" }
-            ],
-            "2026": [
+            /* "2026": [
                 { name: "Feltöltés alatt", date: "N/A", path: "2026/01_osszegzo.jpg" }
                 
+            ], */
+            "2025": [
+                { name: "Nyitó buli pillanatok", date: "2025.09.27.", path: "2025/IMG_4341.JPG" },
+                { name: "Fő színpad - Koncert", date: "2025.09.27.", path: "2025/IMG_6374.jpeg" },
+                { name: "Tábortűz és hangulat", date: "2025.09.27.", path: "2025/IMG_6152.jpeg" }
             ]
         };
 

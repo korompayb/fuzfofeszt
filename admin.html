@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>FűzfőFeszt 26 | Admin</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7ed,
+                    #f8f5ef
+                );
+
+            font-family:
+                'Montserrat',
+                sans-serif;
+
+            color: #222;
+
+        }
+
+
+        .container-main {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                25px 15px 60px;
+
+        }
+
+
+        .brand {
+
+            font-family:
+                'Pacifico',
+                cursive;
+
+            color:
+                #e85d04;
+
+            font-size:
+                1.8rem;
+
+        }
+
+
+        .admin-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .admin-header h1 {
+
+            font-weight:
+                700;
+
+            margin:
+                0;
+
+        }
+
+
+        .login-box {
+
+            max-width:
+                450px;
+
+            margin:
+                80px auto;
+
+            background:
+                white;
+
+            border-radius:
+                24px;
+
+            padding:
+                35px;
+
+            box-shadow:
+                0 10px 40px
+                rgba(0,0,0,.1);
+
+        }
+
+
+        .login-logo {
+
+            font-family:
+                'Pacifico',
+                cursive;
+
+            color:
+                #e85d04;
+
+            text-align:
+                center;
+
+            font-size:
+                2rem;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .btn-festival {
+
+            background:
+                #e85d04;
+
+            color:
+                white;
+
+            border:
+                none;
+
+            border-radius:
+                12px;
+
+            padding:
+                13px 20px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .btn-festival:hover {
+
+            background:
+                #c94e00;
+
+            color:
+                white;
+
+        }
+
+
+        .stats {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                15px;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .stat-card {
+
+            background:
+                white;
+
+            border-radius:
+                18px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,.06);
+
+        }
+
+
+        .stat-label {
+
+            color:
+                #777;
+
+            font-size:
+                .9rem;
+
+        }
+
+
+        .stat-value {
+
+            font-size:
+                1.6rem;
+
+            font-weight:
+                700;
+
+            margin-top:
+                5px;
+
+        }
+
+
+        .stat-orange {
+
+            color:
+                #e85d04;
+
+        }
+
+
+        .stat-green {
+
+            color:
+                #198754;
+
+        }
+
+
+        .stat-red {
+
+            color:
+                #dc3545;
+
+        }
+
+
+        .search-box {
+
+            background:
+                white;
+
+            border-radius:
+                18px;
+
+            padding:
+                20px;
+
+            margin-bottom:
+                20px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,.06);
+
+        }
+
+
+        .search-row {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+        }
+
+
+        .search-row input {
+
+            flex:
+                1;
+
+        }
+
+
+        .order-card {
+
+            background:
+                white;
+
+            border-radius:
+                20px;
+
+            padding:
+                25px;
+
+            margin-bottom:
+                18px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,.07);
+
+        }
+
+
+        .order-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .order-code {
+
+            font-size:
+                1.3rem;
+
+            font-weight:
+                700;
+
+            color:
+                #e85d04;
+
+        }
+
+
+        .status {
+
+            padding:
+                7px 12px;
+
+            border-radius:
+                30px;
+
+            font-size:
+                .8rem;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .status-pending {
+
+            background:
+                #fff3cd;
+
+            color:
+                #856404;
+
+        }
+
+
+        .status-paid {
+
+            background:
+                #d1e7dd;
+
+            color:
+                #0f5132;
+
+        }
+
+
+        .order-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                20px;
+
+        }
+
+
+        .order-section {
+
+            background:
+                #fafafa;
+
+            border-radius:
+                14px;
+
+            padding:
+                16px;
+
+        }
+
+
+        .order-section h5 {
+
+            margin-bottom:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .person {
+
+            padding:
+                12px 0;
+
+            border-top:
+                1px solid #eee;
+
+        }
+
+
+        .person:first-child {
+
+            border-top:
+                none;
+
+        }
+
+
+        .person-name {
+
+            font-weight:
+                700;
+
+        }
+
+
+        .total {
+
+            font-size:
+                1.5rem;
+
+            font-weight:
+                700;
+
+            color:
+                #e85d04;
+
+        }
+
+
+        .order-actions {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            margin-top:
+                20px;
+
+        }
+
+
+        .btn-paid {
+
+            background:
+                #198754;
+
+            color:
+                white;
+
+            border:
+                none;
+
+            border-radius:
+                10px;
+
+            padding:
+                12px 18px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .btn-unpaid {
+
+            background:
+                #ffc107;
+
+            color:
+                #222;
+
+            border:
+                none;
+
+            border-radius:
+                10px;
+
+            padding:
+                12px 18px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .btn-copy {
+
+            background:
+                #343a40;
+
+            color:
+                white;
+
+            border:
+                none;
+
+            border-radius:
+                10px;
+
+            padding:
+                12px 18px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .empty {
+
+            background:
+                white;
+
+            border-radius:
+                20px;
+
+            padding:
+                50px;
+
+            text-align:
+                center;
+
+            color:
+                #777;
+
+        }
+
+
+        .loading {
+
+            text-align:
+                center;
+
+            padding:
+                40px;
+
+            color:
+                #777;
+
+        }
+
+
+        @media(max-width: 800px) {
+
+            .stats {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .order-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .order-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+        }
+
+
+        @media(max-width: 500px) {
+
+            .stats {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .search-row {
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .order-actions {
+
+                flex-direction:
+                    column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container-main">
+
+
+    <!-- =====================================================
+         LOGIN
+    ====================================================== -->
+
+    <div id="loginScreen"
+         class="login-box">
+
+        <div class="login-logo">
+
+            FűzfőFeszt 26'
+
+        </div>
+
+
+        <h3 class="text-center mb-4">
+
+            Admin belépés
+
+        </h3>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+
+                E-mail
+
+            </label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                class="form-control"
+                placeholder="zsofi@..."
+
+            >
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+
+                Jelszó
+
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                class="form-control"
+                placeholder="••••••••"
+
+            >
+
+        </div>
+
+
+        <div
+            id="loginError"
+            class="alert alert-danger d-none">
+        </div>
+
+
+        <button
+            id="loginButton"
+            class="btn-festival w-100">
+
+            Belépés
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         ADMIN
+    ====================================================== -->
+
+    <div
+        id="adminScreen"
+        class="d-none">
+
+
+        <!-- HEADER -->
+
+        <div class="admin-header">
+
+            <div>
+
+                <div class="brand">
+
+                    FűzfőFeszt 26'
+
+                </div>
+
+                <h1>
+
+                    Rendelések
+
+                </h1>
+
+            </div>
+
+
+            <button
+                id="logoutButton"
+                class="btn btn-outline-secondary">
+
+                Kijelentkezés
+
+            </button>
+
+        </div>
+
+
+        <!-- STATISZTIKÁK -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+
+                    Összes rendelés
+
+                </div>
+
+                <div
+                    id="statOrders"
+                    class="stat-value stat-orange">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+
+                    Fizetve
+
+                </div>
+
+                <div
+                    id="statPaid"
+                    class="stat-value stat-green">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+
+                    Fizetésre vár
+
+                </div>
+
+                <div
+                    id="statPending"
+                    class="stat-value stat-red">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+
+                    Fizetett összeg
+
+                </div>
+
+                <div
+                    id="statRevenue"
+                    class="stat-value">
+
+                    0 Ft
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- KERESÉS -->
+
+        <div class="search-box">
+
+            <div class="search-row">
+
+                <input
+                    id="searchInput"
+                    class="form-control"
+                    placeholder="Rendelés azonosító vagy név...">
+
+                <button
+                    id="searchButton"
+                    class="btn-festival">
+
+                    🔎 Keresés
+
+                </button>
+
+                <button
+                    id="allButton"
+                    class="btn btn-outline-secondary">
+
+                    Összes
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RENDELÉSEK -->
+
+        <div id="ordersContainer">
+
+            <div class="loading">
+
+                Rendelések betöltése...
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+
+const SUPABASE_URL =
+    "https://jklzqnneslqriamzmjjm.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_y8iSZMSv5W8UIDcisanebg_-6EJbVy3";
+
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================================
+   SEGÉDFÜGGVÉNYEK
+========================================================= */
+
+
+function money(value) {
+
+    return Number(value)
+        .toLocaleString("hu-HU") + " Ft";
+
+}
+
+
+function escapeHtml(text) {
+
+    return String(text ?? "")
+
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   ELEMEK
+========================================================= */
+
+
+const loginScreen =
+    document.getElementById(
+        "loginScreen"
+    );
+
+
+const adminScreen =
+    document.getElementById(
+        "adminScreen"
+    );
+
+
+const loginEmail =
+    document.getElementById(
+        "loginEmail"
+    );
+
+
+const loginPassword =
+    document.getElementById(
+        "loginPassword"
+    );
+
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+
+const ordersContainer =
+    document.getElementById(
+        "ordersContainer"
+    );
+
+
+/* =========================================================
+   BELÉPÉS
+========================================================= */
+
+
+loginButton.addEventListener(
+    "click",
+    login
+);
+
+
+loginPassword.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            login();
+
+        }
+
+    }
+);
+
+
+async function login() {
+
+    loginError.classList
+        .add("d-none");
+
+
+    const email =
+        loginEmail.value.trim();
+
+
+    const password =
+        loginPassword.value;
+
+
+    if (!email || !password) {
+
+        showLoginError(
+            "Add meg az e-mail címed és a jelszavad!"
+        );
+
+        return;
+
+    }
+
+
+    loginButton.disabled = true;
+
+    loginButton.textContent =
+        "Belépés...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth
+            .signInWithPassword({
+
+                email,
+                password
+
+            });
+
+
+    if (error) {
+
+        showLoginError(
+            "Hibás e-mail vagy jelszó."
+        );
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+            "Belépés";
+
+        return;
+
+    }
+
+
+    if (data.session) {
+
+        showAdmin();
+
+    }
+
+}
+
+
+function showLoginError(message) {
+
+    loginError.textContent =
+        message;
+
+    loginError.classList
+        .remove("d-none");
+
+}
+
+
+/* =========================================================
+   ADMIN MEGJELENÍTÉSE
+========================================================= */
+
+
+function showAdmin() {
+
+    loginScreen.classList
+        .add("d-none");
+
+
+    adminScreen.classList
+        .remove("d-none");
+
+
+    loadOrders();
+
+}
+
+
+/* =========================================================
+   KIJELENTKEZÉS
+========================================================= */
+
+
+document
+    .getElementById("logoutButton")
+    .addEventListener(
+        "click",
+        async () => {
+
+            await supabaseClient.auth
+                .signOut();
+
+            location.reload();
+
+        }
+    );
+
+
+/* =========================================================
+   RENDELÉSEK BETÖLTÉSE
+========================================================= */
+
+
+let currentOrders = [];
+
+
+async function loadOrders(
+    search = ""
+) {
+
+    ordersContainer.innerHTML = `
+
+        <div class="loading">
+
+            Rendelések betöltése...
+
+        </div>
+
+    `;
+
+
+    let query =
+        supabaseClient
+            .from("orders")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+    if (search) {
+
+        const clean =
+            search.trim();
+
+
+        query =
+            query.or(
+                `order_code.ilike.%${clean}%,customer_name.ilike.%${clean}%`
+            );
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await query;
+
+
+    if (error) {
+
+        console.error(error);
+
+        ordersContainer.innerHTML = `
+
+            <div class="alert alert-danger">
+
+                Nem sikerült betölteni a rendeléseket.
+
+                <br><br>
+
+                ${escapeHtml(error.message)}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    currentOrders =
+        data || [];
+
+
+    updateStatistics(
+        currentOrders
+    );
+
+
+    renderOrders(
+        currentOrders
+    );
+
+}
+
+
+/* =========================================================
+   STATISZTIKA
+========================================================= */
+
+
+function updateStatistics(
+    orders
+) {
+
+    const total =
+        orders.length;
+
+
+    const paid =
+        orders.filter(
+            order =>
+                order.payment_status ===
+                "paid"
+        ).length;
+
+
+    const pending =
+        total - paid;
+
+
+    const revenue =
+        orders
+
+            .filter(
+                order =>
+                    order.payment_status ===
+                    "paid"
+            )
+
+            .reduce(
+                (
+                    sum,
+                    order
+                ) =>
+                    sum +
+                    Number(
+                        order.total_price
+                    ),
+                0
+            );
+
+
+    document.getElementById(
+        "statOrders"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "statPaid"
+    ).textContent =
+        paid;
+
+
+    document.getElementById(
+        "statPending"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "statRevenue"
+    ).textContent =
+        money(revenue);
+
+}
+
+
+/* =========================================================
+   RENDELÉSEK MEGJELENÍTÉSE
+========================================================= */
+
+
+function renderOrders(
+    orders
+) {
+
+    if (!orders.length) {
+
+        ordersContainer.innerHTML = `
+
+            <div class="empty">
+
+                <h4>
+
+                    Nincs rendelés
+
+                </h4>
+
+                <p>
+
+                    A keresésnek megfelelő rendelés
+                    nem található.
+
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    ordersContainer.innerHTML =
+        orders
+            .map(
+                renderOrder
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   EGY RENDELÉS
+========================================================= */
+
+
+function renderOrder(
+    order
+) {
+
+    const paid =
+        order.payment_status ===
+        "paid";
+
+
+    const tickets =
+        Array.isArray(
+            order.tickets
+        )
+            ? order.tickets
+            : [];
+
+
+    const people =
+        Array.isArray(
+            order.people
+        )
+            ? order.people
+            : [];
+
+
+    const created =
+        order.created_at
+            ? new Date(
+                order.created_at
+            ).toLocaleString(
+                "hu-HU"
+            )
+            : "";
+
+
+    const ticketHtml =
+        tickets.length
+
+            ? tickets.map(
+                ticket => `
+
+                    <div class="d-flex
+                                justify-content-between
+                                mb-2">
+
+                        <span>
+
+                            ${escapeHtml(
+                                ticket.name
+                            )}
+
+                            ×
+                            ${ticket.quantity}
+
+                        </span>
+
+                        <strong>
+
+                            ${money(
+                                ticket.price *
+                                ticket.quantity
+                            )}
+
+                        </strong>
+
+                    </div>
+
+                `
+            ).join("")
+
+            : "<span>Nincs jegy</span>";
+
+
+    const peopleHtml =
+        people.length
+
+            ? people.map(
+                (person, index) => `
+
+                    <div class="person">
+
+                        <div class="person-name">
+
+                            ${index + 1}.
+                            ${escapeHtml(
+                                person.name
+                            )}
+
+                        </div>
+
+                        <div>
+
+                            🍩 Reggeli:
+                            ${escapeHtml(
+                                person.breakfast ||
+                                "Semmi"
+                            )}
+
+                            ${
+                                Number(
+                                    person.breakfastPrice
+                                ) > 0
+
+                                ? " – " +
+                                    money(
+                                        person.breakfastPrice
+                                    )
+
+                                : ""
+                            }
+
+                        </div>
+
+                        <div>
+
+                            🍲 Ebéd:
+                            ${escapeHtml(
+                                person.lunch ||
+                                "Semmi"
+                            )}
+
+                            ${
+                                Number(
+                                    person.lunchPrice
+                                ) > 0
+
+                                ? " – " +
+                                    money(
+                                        person.lunchPrice
+                                    )
+
+                                : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                `
+            ).join("")
+
+            : "<span>Nincs étkezés</span>";
+
+
+    return `
+
+        <div
+            class="order-card"
+            data-order-id="${order.id}">
+
+
+            <div class="order-header">
+
+                <div>
+
+                    <div class="order-code">
+
+                        ${escapeHtml(
+                            order.order_code
+                        )}
+
+                    </div>
+
+                    <strong>
+
+                        ${escapeHtml(
+                            order.customer_name
+                        )}
+
+                    </strong>
+
+                    <div class="text-muted small">
+
+                        ${created}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    ${
+                        paid
+
+                        ? `
+
+                            <span
+                                class="status status-paid">
+
+                                ✓ FIZETVE
+
+                            </span>
+
+                          `
+
+                        : `
+
+                            <span
+                                class="status status-pending">
+
+                                🟡 FIZETÉSRE VÁR
+
+                            </span>
+
+                          `
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="order-grid">
+
+
+                <!-- JEGYEK -->
+
+                <div class="order-section">
+
+                    <h5>
+
+                        🎟️ Jegyek
+
+                    </h5>
+
+                    ${ticketHtml}
+
+                    <hr>
+
+                    <div class="d-flex
+                                justify-content-between">
+
+                        <span>
+
+                            Jegyek összesen
+
+                        </span>
+
+                        <strong>
+
+                            ${money(
+                                order.total_ticket_price
+                            )}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ÉTKEZÉS -->
+
+                <div class="order-section">
+
+                    <h5>
+
+                        🍽️ Étkezés
+
+                    </h5>
+
+                    ${peopleHtml}
+
+                    <hr>
+
+                    <div class="d-flex
+                                justify-content-between">
+
+                        <span>
+
+                            Étkezés összesen
+
+                        </span>
+
+                        <strong>
+
+                            ${money(
+                                order.total_food_price
+                            )}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ÖSSZESEN -->
+
+            <div
+                class="d-flex
+                       justify-content-between
+                       align-items-center
+                       mt-4">
+
+                <span>
+
+                    Fizetendő
+
+                </span>
+
+                <span class="total">
+
+                    ${money(
+                        order.total_price
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="order-actions">
+
+
+                ${
+                    paid
+
+                    ? `
+
+                        <button
+                            class="btn-unpaid"
+                            onclick="
+                                setPaymentStatus(
+                                    ${order.id},
+                                    'pending'
+                                )
+                            ">
+
+                            ↩ Fizetés visszaállítása
+
+                        </button>
+
+                      `
+
+                    : `
+
+                        <button
+                            class="btn-paid"
+                            onclick="
+                                setPaymentStatus(
+                                    ${order.id},
+                                    'paid'
+                                )
+                            ">
+
+                            ✓ Fizetve
+
+                        </button>
+
+                      `
+                }
+
+
+                <button
+                    class="btn-copy"
+                    onclick="
+                        copyReport(
+                            ${order.id}
+                        )
+                    ">
+
+                    📋 Jelentés másolása
+
+                </button>
+
+
+                <button
+                    class="btn btn-outline-secondary"
+                    onclick="
+                        copyRevolutNote(
+                            ${order.id}
+                        )
+                    ">
+
+                    📋 Revolut közlemény
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FIZETÉSI ÁLLAPOT
+========================================================= */
+
+
+async function setPaymentStatus(
+    id,
+    status
+) {
+
+    const confirmation =
+        status === "paid"
+
+            ? confirm(
+                "Biztosan fizetve jelölöd ezt a rendelést?"
+            )
+
+            : true;
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    const updateData = {
+
+        payment_status:
+            status
+
+    };
+
+
+    if (status === "paid") {
+
+        updateData.paid_at =
+            new Date().toISOString();
+
+    } else {
+
+        updateData.paid_at =
+            null;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+
+            .from("orders")
+
+            .update(
+                updateData
+            )
+
+            .eq(
+                "id",
+                id
+            );
+
+
+    if (error) {
+
+        alert(
+            "Nem sikerült módosítani:\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    await loadOrders(
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .value
+    );
+
+}
+
+
+/* =========================================================
+   JELENTÉS MÁSOLÁSA
+========================================================= */
+
+
+async function copyReport(
+    id
+) {
+
+    const order =
+        currentOrders.find(
+            order =>
+                Number(order.id) ===
+                Number(id)
+        );
+
+
+    if (!order) {
+
+        return;
+
+    }
+
+
+    const tickets =
+        Array.isArray(
+            order.tickets
+        )
+            ? order.tickets
+            : [];
+
+
+    const people =
+        Array.isArray(
+            order.people
+        )
+            ? order.people
+            : [];
+
+
+    let report = "";
+
+
+    report +=
+        "FŰZFŐFESZT 26\n";
+
+    report +=
+        "====================\n\n";
+
+
+    report +=
+        order.order_code +
+        "\n";
+
+
+    report +=
+        order.customer_name +
+        "\n\n";
+
+
+    report +=
+        "JEGYEK:\n";
+
+
+    tickets.forEach(
+        ticket => {
+
+            report +=
+                `${ticket.quantity} × ` +
+                `${ticket.name} – ` +
+                `${money(
+                    ticket.price *
+                    ticket.quantity
+                )}\n`;
+
+        }
+    );
+
+
+    report +=
+        "\nÉTKEZÉS:\n";
+
+
+    people.forEach(
+        (person, index) => {
+
+            report +=
+                `\n${index + 1}. ` +
+                `${person.name}\n`;
+
+
+            report +=
+                `- Reggeli: ` +
+                `${person.breakfast}`;
+
+
+            if (
+                Number(
+                    person.breakfastPrice
+                ) > 0
+            ) {
+
+                report +=
+                    ` – ` +
+                    money(
+                        person.breakfastPrice
+                    );
+
+            }
+
+
+            report += "\n";
+
+
+            report +=
+                `- Ebéd: ` +
+                `${person.lunch}`;
+
+
+            if (
+                Number(
+                    person.lunchPrice
+                ) > 0
+            ) {
+
+                report +=
+                    ` – ` +
+                    money(
+                        person.lunchPrice
+                    );
+
+            }
+
+
+            report += "\n";
+
+        }
+    );
+
+
+    report +=
+        "\n====================\n";
+
+
+    report +=
+        "ÖSSZESEN: " +
+        money(
+            order.total_price
+        ) +
+        "\n";
+
+
+    report +=
+        "FIZETÉS: " +
+        (
+            order.payment_status === "paid"
+                ? "FIZETVE"
+                : "FIZETÉSRE VÁR"
+        );
+
+
+    await copyText(
+        report
+    );
+
+}
+
+
+/* =========================================================
+   REVOLUT KÖZLEMÉNY MÁSOLÁSA
+========================================================= */
+
+
+async function copyRevolutNote(
+    id
+) {
+
+    const order =
+        currentOrders.find(
+            order =>
+                Number(order.id) ===
+                Number(id)
+        );
+
+
+    if (!order) {
+
+        return;
+
+    }
+
+
+    await copyText(
+        order.revolut_note
+    );
+
+}
+
+
+/* =========================================================
+   VÁGÓLAP
+========================================================= */
+
+
+async function copyText(
+    text
+) {
+
+    try {
+
+        await navigator
+            .clipboard
+            .writeText(text);
+
+
+        alert(
+            "✓ Kimásolva a vágólapra!"
+        );
+
+
+    } catch {
+
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value =
+            text;
+
+
+        document.body
+            .appendChild(
+                textarea
+            );
+
+
+        textarea.select();
+
+
+        document.execCommand(
+            "copy"
+        );
+
+
+        textarea.remove();
+
+
+        alert(
+            "✓ Kimásolva!"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   KERESÉS
+========================================================= */
+
+
+document
+    .getElementById(
+        "searchButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            loadOrders(
+                document
+                    .getElementById(
+                        "searchInput"
+                    )
+                    .value
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                loadOrders(
+                    event.target.value
+                );
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "allButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "searchInput"
+                )
+                .value = "";
+
+
+            loadOrders();
+
+        }
+    );
+
+
+/* =========================================================
+   SESSION ELLENŐRZÉS
+========================================================= */
+
+
+async function checkSession() {
+
+    const {
+        data
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
+    if (
+        data.session
+    ) {
+
+        showAdmin();
+
+    }
+
+}
+
+
+checkSession();
+
+
+/* =========================================================
+   AUTH ÁLLAPOT VÁLTOZÁS
+========================================================= */
+
+
+supabaseClient
+    .auth
+    .onAuthStateChange(
+        (
+            event,
+            session
+        ) => {
+
+            if (
+                session
+            ) {
+
+                showAdmin();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

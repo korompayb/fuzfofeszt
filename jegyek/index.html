@@ -1,160 +1,1593 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FűzfőFeszt 26 | Kezdőlap</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>FűzfőFeszt 26 | Jegyek és étkezés</title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="/styles.css">
 
     <style>
-        /* FűzfőFeszt stílusok */
-        body {
-            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
-            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-            color: #3a3a3a;
+        .ticket-card,
+        .person-card,
+        .summary-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
         }
-        .navbar {
-            background: #e6f2f0;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(60, 60, 60, 0.05);
-        }
-        .navbar-brand {
-            font-family: 'Pacifico', cursive;
-            font-weight: 700;
-            color: #6c7a89;
-            font-size: 2rem;
-            letter-spacing: 2px;
-        }
-        .nav-link {
-            color: #7b8fa1 !important;
-            font-weight: 500;
-            margin-right: 1rem;
-            transition: color 0.2s;
-        }
-        .nav-link:hover {
-            color: #a3c9c7 !important;
-        }
-        /* ... A többi FűzfőFeszt stílus ... */
-        .hero {
-            background: linear-gradient(90deg, #e6f2f0 60%, #f5e6f7 100%);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 24px rgba(60, 60, 60, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 3rem;
-            color: #a3c9c7;
-            margin-bottom: 1rem;
-        }
-        .hero p {
-            font-size: 1.3rem;
-            color: #6c7a89;
-            margin-bottom: 2rem;
-        }
-        .hero .btn {
-            font-size: 1.1rem;
-            background: #a3c9c7;
-            color: #fff;
-            border-radius: 24px;
-            padding: 0.7rem 2rem;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(163, 201, 199, 0.15);
-        }
-        .main {
-            background: #f5f7fa;
-            border-radius: 18px;
-            padding: 2rem;
-            box-shadow: 0 2px 12px rgba(60, 60, 60, 0.07);
-            margin-bottom: 2rem;
-        }
-        .section-title {
-            color: #6c7a89;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        .card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(60, 60, 60, 0.07);
-            margin-bottom: 1.5rem;
-        }
-        .card-img-top {
-            border-radius: 16px 16px 0 0;
-            height: 180px;
-            object-fit: cover;
-        }
-        .card-title {
-            color: #a3c9c7;
-            font-weight: 600;
-        }
-        .info-box {
-            background: #e6f2f0;
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
-            color: #6c7a89;
-        }
-        .footer {
-            text-align: center;
-            color: #7b8fa1;
-            padding: 1rem 0;
-            font-size: 0.95rem;
-            background: #e6f2f0;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-        .social-icons a {
-            color: #a3c9c7;
-            font-size: 1.7rem;
-            margin: 0 0.5rem;
-            transition: color 0.2s;
-        }
-        .social-icons a:hover {
-            color: #6c7a89;
-        }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .main {
-                padding: 1rem;
-            }
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
-    <script src="https://kit.fontawesome.com/7b7e2e1e6a.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="container py-4">
-        <nav class="navbar navbar-expand-lg mb-4">
-            <a class="navbar-brand" href="#">FűzfőFeszt 26'</a>
-            <ul class="nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Kezdőlap</a></li>
-                <li class="nav-item"><a class="nav-link" href="#programok">Programok</a></li>
-                <li class="nav-item"><a class="nav-link" href="#jegyek">Jegyek</a></li>
-                <li class="nav-item"><a class="nav-link" href="#helyszin">Helyszín</a></li>
-                <li class="nav-item"><a class="nav-link" href="#kapcsolat">Kapcsolat</a></li>
-            </ul>
-        </nav>
 
-       
-       
-       
-        <div class="footer">
-            <p>&copy; 2025 FűzfőFeszt. Minden jog fenntartva.</p>
+        .ticket-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .ticket-price {
+            color: #a3c9c7;
+            font-weight: 700;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-control button {
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background: #a3c9c7;
+            color: white;
+            font-size: 1.4rem;
+        }
+
+        .quantity-control input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .person-card h4 {
+            margin-bottom: 20px;
+        }
+
+        .food-option {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .food-option:hover {
+            background: #fff3e8;
+        }
+
+        .food-option input {
+            margin-right: 10px;
+        }
+
+        .food-price {
+            float: right;
+            font-weight: 700;
+            color: #a3c9c7;
+        }
+
+        .summary-card {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .summary-total {
+            font-size: 1.6rem;
+            font-weight: 700;
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-festival {
+            background: #a3c9c7;
+            border: none;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            width: 100%;
+        }
+
+        .btn-festival:hover {
+            background: #c94e00;
+            color: white;
+        }
+
+        .btn-revolut {
+            background: #0075eb;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            font-weight: 700;
+        }
+
+        .btn-copy {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .receipt {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .person-number {
+            color: #a3c9c7;
+            font-weight: 700;
+        }
+
+        @media(max-width: 768px) {
+
+            .ticket-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container container-main py-4">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg mb-4">
+
+        <a class="navbar-brand" href="../">
+            FűzfőFeszt 26'
+        </a>
+
+        <div class="ms-auto">
+            <a class="nav-link d-inline" href="../index.html">
+                Kezdőlap
+            </a>
+
+            <a class="nav-link d-inline" href="../programs.html">
+                Programok
+            </a>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>FűzfőFeszt 26'</h1>
+
+        <p class="mb-0">
+            Jegy + étkezés rendelés
+        </p>
+
+    </section>
+
+
+    <!-- RENDELÉS -->
+
+    <section id="orderSection">
+
+        <h2 class="section-title">
+            Rendelés
+        </h2>
+
+
+        <!-- NÉV -->
+
+        <div class="ticket-card">
+
+            <div style="width:100%">
+
+                <label class="form-label fw-bold">
+                    A rendelő neve
+                </label>
+
+                <input
+                    id="customerName"
+                    type="text"
+                    class="form-control"
+                    placeholder="Pl. Kovács Péter"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <!-- BAL OLDAL -->
+
+            <div class="col-lg-7">
+
+
+                <!-- JEGYEK -->
+
+                <h3 class="mb-3">
+                    Jegyek
+                </h3>
+
+
+                <!-- ELŐVÉTEL -->
+
+                <div
+                    class="ticket-card"
+                    data-ticket="Elővételi jegy"
+                    data-price="2500">
+
+                    <div>
+
+                        <h5>
+                            Elővételi jegy
+                        </h5>
+
+                        <span class="ticket-price">
+                            2500 Ft / db
+                        </span>
+
+                    </div>
+
+
+                    <div class="quantity-control">
+
+                        <button
+                            type="button"
+                            class="minus">
+                            −
+                        </button>
+
+                        <input
+                            type="number"
+                            value="0"
+                            min="0"
+                            class="quantity">
+
+                        <button
+                            type="button"
+                            class="plus">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SZEMÉLYEK -->
+
+                <h3 class="mb-3 mt-5">
+                    Étkezés
+                </h3>
+
+                <p class="text-muted">
+                    Minden jegyhez adj meg egy személyt.
+                </p>
+
+                <div id="peopleContainer"></div>
+
+
+            </div>
+
+
+            <!-- JOBB OLDAL -->
+
+            <div class="col-lg-5">
+
+                <div class="summary-card">
+
+                    <h3>
+                        Összesítés
+                    </h3>
+
+                    <div
+                        id="ticketSummary">
+                    </div>
+
+                    <hr>
+
+                    <div class="summary-line">
+
+                        <span>
+                            Jegyek
+                        </span>
+
+                        <strong id="ticketTotal">
+                            0 Ft
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Étkezés
+                        </span>
+
+                        <strong id="foodTotal">
+                            0 Ft
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line summary-total">
+
+                        <span>
+                            Összesen
+                        </span>
+
+                        <strong id="grandTotal">
+                            0 Ft
+                        </strong>
+
+                    </div>
+
+
+
+                    <section>
+                                <div id="createOrder" class="card shadow-lg border-0 mb-3" style=" margin: 30px auto; 
+                                    /* REVOLUT HÁTTÉR GRADIENS */
+                                    background: linear-gradient(135deg, #00d4ff 0%, #4f46e5 50%, #a033ff 100%); 
+                                    color: #fff !important; 
+                                    border-radius: 12px;
+                                    cursor: pointer;
+                                    position: relative; /* Fontos! Pozícionáláshoz szükséges */
+                                    overflow: hidden;   /* Fontos! A sarokra helyezett logó levágásához */
+                                ">
+                                    
+                                    <div class="card-body d-flex align-items-center p-4">
+                                        
+                                        <div>
+                                            <h5 class="mb-0" style="font-weight: 700; color:#fff;">Gyors, biztonságos fizetés</h5>
+                                            <p class="mb-0" style="font-size:0.95rem; opacity: 0.95;">a Revolut rendszerén keresztül.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="position: absolute; bottom: 15px; right: 15px; width: 80px; height: 18px; opacity: 0.8;">
+                                       <img src="/revolut-white.svg" alt="">
+                                    </div>
+                                </div>
+                            </section>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NYUGTA -->
+
+    <section
+        id="receiptSection"
+        class="hidden mt-5">
+
+        <div class="receipt">
+
+            <h2 class="text-center mb-4">
+                ✓ Rendelés létrehozva
+            </h2>
+
+
+            <div class="text-center mb-4">
+
+                <div class="text-muted">
+                    Rendelési azonosító
+                </div>
+
+                <h1
+                    id="receiptOrderCode"
+                    class="text-warning">
+                </h1>
+
+            </div>
+
+
+            <div id="receiptContent"></div>
+
+
+            <hr>
+
+
+            <div class="text-center">
+
+                <p class="text-muted">
+                    Fizetendő
+                </p>
+
+                <h2 id="receiptTotal">
+                </h2>
+
+            </div>
+
+
+            <div class="mt-4">
+
+                <label class="fw-bold">
+                    Revolut közlemény
+                </label>
+
+                <input
+                    id="revolutNote"
+                    class="form-control mb-3"
+                    readonly>
+
+
+                <button style="display: none;"
+                    id="copyNote"
+                    class="btn-copy mb-3">
+
+                    📋 Közlemény másolása
+
+                </button>
+
+
+                <a target="_blank">
+                    <section>
+                                <div id="revolutButton" class="card shadow-lg border-0 mb-3" style=" margin: 30px auto; 
+                                    /* REVOLUT HÁTTÉR GRADIENS */
+                                    background: linear-gradient(135deg, #00d4ff 0%, #4f46e5 50%, #a033ff 100%); 
+                                    color: #fff !important; 
+                                    border-radius: 12px;
+                                    cursor: pointer;
+                                    position: relative; /* Fontos! Pozícionáláshoz szükséges */
+                                    overflow: hidden;   /* Fontos! A sarokra helyezett logó levágásához */
+                                ">
+                                    
+                                    <div class="card-body d-flex align-items-center p-4">
+                                        
+                                        <div>
+                                            <h5 class="mb-0" style="font-weight: 700; color:#fff;">Gyors, biztonságos fizetés</h5>
+                                            <p class="mb-0" style="font-size:0.95rem; opacity: 0.95;">a Revolut rendszerén keresztül.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="position: absolute; bottom: 15px; right: 15px; width: 80px; height: 18px; opacity: 0.8;">
+                                       <img src="/revolut-white.svg" alt="">
+                                    </div>
+                                </div>
+                            </section>
+
+                </a>
+
+            </div>
+
+
+            <div class="alert alert-warning mt-4">
+
+                <strong>Fontos!</strong>
+
+                <br>
+
+                A Revolutban ellenőrizd, hogy a
+                <strong>közlemény és az összeg</strong>
+                megfelelően szerepel-e.
+
+                <br><br>
+
+                A rendelési azonosítód:
+
+                <strong id="receiptOrderCode2">
+                </strong>
+
+                <br>
+
+                Ezt őrizd meg a fizetés után.
+
+            </div>
+
+
+            <button
+                id="newOrder"
+                class="btn btn-outline-secondary w-100 mt-3">
+
+                Új rendelés
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <footer class="text-center py-5">
+
+        <p>
+            © 2026 FűzfőFeszt
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+   ========================================================= */
+
+
+/*
+    EZT A KÉT ÉRTÉKET CSERÉLD KI A SAJÁT SUPABASE PROJEKTEDRE.
+
+    Supabase Dashboard:
+    Settings → API
+
+    A PUBLISHABLE / ANON kulcs kell.
+
+    SOHA NE a service_role / secret kulcsot!
+*/
+
+
+const SUPABASE_URL =
+    "https://jklzqnneslqriamzmjjm.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_y8iSZMSv5W8UIDcisanebg_-6EJbVy3";
+
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================================
+   ÁRAK
+   ========================================================= */
+
+
+const FOOD = {
+
+    breakfast: {
+
+        "Kakaós csiga": 700,
+
+        "Semmi": 0
+
+    },
+
+    lunch: {
+
+        "Lángos": 1200,
+
+        "Pörkölt": 1800,
+
+        "Gulyásleves": 1500,
+
+        "Semmi": 0
+
+    }
+
+};
+
+
+/* =========================================================
+   SEGÉDFÜGGVÉNYEK
+   ========================================================= */
+
+
+function money(value) {
+
+    return value.toLocaleString("hu-HU") + " Ft";
+
+}
+
+
+/* =========================================================
+   JEGYEK
+   ========================================================= */
+
+
+const ticketCards =
+    document.querySelectorAll(".ticket-card[data-ticket]");
+
+
+ticketCards.forEach(card => {
+
+    const plus =
+        card.querySelector(".plus");
+
+    const minus =
+        card.querySelector(".minus");
+
+    const input =
+        card.querySelector(".quantity");
+
+
+    plus.addEventListener("click", () => {
+
+        input.value =
+            Number(input.value) + 1;
+
+        updatePeople();
+
+    });
+
+
+    minus.addEventListener("click", () => {
+
+        input.value =
+            Math.max(0, Number(input.value) - 1);
+
+        updatePeople();
+
+    });
+
+
+    input.addEventListener("input", () => {
+
+        if (Number(input.value) < 0) {
+
+            input.value = 0;
+
+        }
+
+        updatePeople();
+
+    });
+
+});
+
+
+/* =========================================================
+   JEGY DARABSZÁM
+   ========================================================= */
+
+
+function getTicketCount() {
+
+    let count = 0;
+
+    ticketCards.forEach(card => {
+
+        count += Number(
+            card.querySelector(".quantity").value
+        );
+
+    });
+
+    return count;
+
+}
+
+
+/* =========================================================
+   EMBEREK LÉTREHOZÁSA
+   ========================================================= */
+
+
+function updatePeople() {
+
+    const count =
+        getTicketCount();
+
+    const container =
+        document.getElementById("peopleContainer");
+
+
+    const oldValues = [];
+
+    container
+        .querySelectorAll(".person-card")
+        .forEach(card => {
+
+            oldValues.push({
+
+                name:
+                    card.querySelector(".person-name")?.value || "",
+
+                breakfast:
+                    card.querySelector(
+                        'input[name^="breakfast-"]:checked'
+                    )?.value || "Semmi",
+
+                lunch:
+                    card.querySelector(
+                        'input[name^="lunch-"]:checked'
+                    )?.value || "Semmi"
+
+            });
+
+        });
+
+
+    container.innerHTML = "";
+
+
+    for (let i = 0; i < count; i++) {
+
+        const old =
+            oldValues[i] || {};
+
+
+        const breakfast =
+            old.breakfast || "Semmi";
+
+        const lunch =
+            old.lunch || "Semmi";
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "person-card";
+
+
+        card.innerHTML = `
+
+            <div class="person-number mb-2">
+                ${i + 1}. személy
+            </div>
+
+            <input
+                type="text"
+                class="form-control person-name mb-4"
+                placeholder="Személy neve"
+                value="${escapeHtml(old.name || "")}">
+
+
+            <h5>Reggeli</h5>
+
+            ${createFoodOptions(
+                "breakfast",
+                i,
+                FOOD.breakfast,
+                breakfast
+            )}
+
+
+            <h5 class="mt-4">
+                Ebéd
+            </h5>
+
+            ${createFoodOptions(
+                "lunch",
+                i,
+                FOOD.lunch,
+                lunch
+            )}
+
+        `;
+
+
+        container.appendChild(card);
+
+    }
+
+
+    container
+        .querySelectorAll("input")
+        .forEach(input => {
+
+            input.addEventListener(
+                "change",
+                updateSummary
+            );
+
+        });
+
+
+    updateSummary();
+
+}
+
+
+/* =========================================================
+   FOOD OPTIONS
+   ========================================================= */
+
+
+function createFoodOptions(
+    type,
+    index,
+    foods,
+    selected
+) {
+
+    let html = "";
+
+
+    Object.entries(foods)
+        .forEach(([name, price]) => {
+
+            const checked =
+                name === selected
+                    ? "checked"
+                    : "";
+
+
+            html += `
+
+                <label class="food-option d-block">
+
+                    <input
+                        type="radio"
+                        name="${type}-${index}"
+                        value="${escapeHtml(name)}"
+                        ${checked}>
+
+                    ${escapeHtml(name)}
+
+                    <span class="food-price">
+
+                        ${money(price)}
+
+                    </span>
+
+                </label>
+
+            `;
+
+        });
+
+
+    return html;
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+   ========================================================= */
+
+
+function escapeHtml(text) {
+
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   JEGY ÖSSZEG
+   ========================================================= */
+
+
+function getTickets() {
+
+    const tickets = [];
+
+    ticketCards.forEach(card => {
+
+        const quantity =
+            Number(
+                card.querySelector(".quantity").value
+            );
+
+
+        if (quantity > 0) {
+
+            tickets.push({
+
+                name:
+                    card.dataset.ticket,
+
+                price:
+                    Number(card.dataset.price),
+
+                quantity
+
+            });
+
+        }
+
+    });
+
+
+    return tickets;
+
+}
+
+
+/* =========================================================
+   SZEMÉLYEK
+   ========================================================= */
+
+
+function getPeople() {
+
+    const people = [];
+
+
+    document
+        .querySelectorAll(".person-card")
+        .forEach((card, index) => {
+
+            const name =
+                card
+                    .querySelector(".person-name")
+                    .value
+                    .trim();
+
+
+            const breakfast =
+                card.querySelector(
+                    `input[name="breakfast-${index}"]:checked`
+                )?.value || "Semmi";
+
+
+            const lunch =
+                card.querySelector(
+                    `input[name="lunch-${index}"]:checked`
+                )?.value || "Semmi";
+
+
+            const breakfastPrice =
+                FOOD.breakfast[breakfast] || 0;
+
+
+            const lunchPrice =
+                FOOD.lunch[lunch] || 0;
+
+
+            people.push({
+
+                name,
+
+                breakfast,
+                breakfastPrice,
+
+                lunch,
+                lunchPrice
+
+            });
+
+        });
+
+
+    return people;
+
+}
+
+
+/* =========================================================
+   ÖSSZEGZÉS
+   ========================================================= */
+
+
+function calculateTotals() {
+
+    const tickets =
+        getTickets();
+
+    const people =
+        getPeople();
+
+
+    let ticketTotal = 0;
+
+    tickets.forEach(ticket => {
+
+        ticketTotal +=
+            ticket.price *
+            ticket.quantity;
+
+    });
+
+
+    let foodTotal = 0;
+
+    people.forEach(person => {
+
+        foodTotal +=
+            person.breakfastPrice;
+
+        foodTotal +=
+            person.lunchPrice;
+
+    });
+
+
+    return {
+
+        tickets,
+
+        people,
+
+        ticketTotal,
+
+        foodTotal,
+
+        total:
+            ticketTotal + foodTotal
+
+    };
+
+}
+
+
+/* =========================================================
+   ÖSSZESÍTŐ
+   ========================================================= */
+
+
+function updateSummary() {
+
+    const totals =
+        calculateTotals();
+
+
+    document.getElementById(
+        "ticketTotal"
+    ).textContent =
+        money(totals.ticketTotal);
+
+
+    document.getElementById(
+        "foodTotal"
+    ).textContent =
+        money(totals.foodTotal);
+
+
+    document.getElementById(
+        "grandTotal"
+    ).textContent =
+        money(totals.total);
+
+
+    const summary =
+        document.getElementById(
+            "ticketSummary"
+        );
+
+
+    summary.innerHTML = "";
+
+
+    totals.tickets.forEach(ticket => {
+
+        summary.innerHTML += `
+
+            <div class="summary-line">
+
+                <span>
+                    ${escapeHtml(ticket.name)}
+                    × ${ticket.quantity}
+                </span>
+
+                <strong>
+                    ${money(
+                        ticket.price *
+                        ticket.quantity
+                    )}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================================================
+   RENDELÉS AZONOSÍTÓ
+   ========================================================= */
+
+
+function generateOrderCode() {
+
+    const random =
+        Math.floor(
+            1000 + Math.random() * 9000
+        );
+
+    return "FF26-" + random;
+
+}
+
+
+/* =========================================================
+   RENDELÉS LÉTREHOZÁSA
+   ========================================================= */
+
+
+document
+    .getElementById("createOrder")
+    .addEventListener(
+        "click",
+        createOrder
+    );
+
+
+async function createOrder() {
+
+    const customerName =
+        document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+
+    if (!customerName) {
+
+        alert(
+            "Kérlek add meg a neved!"
+        );
+
+        return;
+
+    }
+
+
+    const totals =
+        calculateTotals();
+
+
+    if (totals.tickets.length === 0) {
+
+        alert(
+            "Legalább egy jegyet válassz!"
+        );
+
+        return;
+
+    }
+
+
+    for (const person of totals.people) {
+
+        if (!person.name) {
+
+            alert(
+                "Minden személyhez adj meg nevet!"
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "createOrder"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Rendelés mentése...";
+
+
+    try {
+
+        /*
+         * AZONOSÍTÓ
+         */
+
+        const orderCode =
+            generateOrderCode();
+
+
+        /*
+         * REVOLUT KÖZLEMÉNY
+         */
+
+        const revolutNote =
+            `${orderCode} - ${customerName}`;
+
+
+        /*
+         * ADATBÁZISBA MENTÉS
+         */
+
+        const { error } =
+            await supabaseClient
+                .from("orders")
+                .insert({
+
+                    order_code:
+                        orderCode,
+
+                    customer_name:
+                        customerName,
+
+                    tickets:
+                        totals.tickets,
+
+                    people:
+                        totals.people,
+
+                    total_ticket_price:
+                        totals.ticketTotal,
+
+                    total_food_price:
+                        totals.foodTotal,
+
+                    total_price:
+                        totals.total,
+
+                    payment_status:
+                        "pending",
+
+                    revolut_note:
+                        revolutNote
+
+                });
+
+
+        if (error) {
+
+            console.error(error);
+
+            throw error;
+
+        }
+
+
+        /*
+         * REVOLUT LINK
+         *
+         * AZ ÖSSZEG FILLÉRBEN MEGY
+         */
+
+        const revolutAmount =
+            totals.total * 100;
+
+
+        const revolutUrl =
+            "https://revolut.me/zsfiaql4v" +
+            "?amount=" +
+            revolutAmount +
+            "&note=" +
+            encodeURIComponent(
+                revolutNote
+            );
+
+
+        /*
+         * NYUGTA
+         */
+
+        renderReceipt(
+            orderCode,
+            customerName,
+            totals,
+            revolutNote,
+            revolutUrl
+        );
+
+
+    } catch (error) {
+
+        alert(
+            "Hiba történt a rendelés mentésekor.\n\n" +
+            error.message
+        );
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "Rendelés létrehozása";
+
+    }
+
+}
+
+
+/* =========================================================
+   NYUGTA MEGJELENÍTÉSE
+   ========================================================= */
+
+
+function renderReceipt(
+    orderCode,
+    customerName,
+    totals,
+    revolutNote,
+    revolutUrl
+) {
+
+    document
+        .getElementById(
+            "orderSection"
+        )
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById(
+            "receiptSection"
+        )
+        .classList
+        .remove("hidden");
+
+
+    document
+        .getElementById(
+            "receiptOrderCode"
+        )
+        .textContent =
+        orderCode;
+
+
+    document
+        .getElementById(
+            "receiptOrderCode2"
+        )
+        .textContent =
+        orderCode;
+
+
+    document
+        .getElementById(
+            "receiptTotal"
+        )
+        .textContent =
+        money(totals.total);
+
+
+    document
+        .getElementById(
+            "revolutNote"
+        )
+        .value =
+        revolutNote;
+
+
+    document
+        .getElementById(
+            "revolutButton"
+        )
+        .href =
+        revolutUrl;
+
+
+    let html = `
+
+        <h4>
+            ${escapeHtml(customerName)}
+        </h4>
+
+    `;
+
+
+    html += `
+
+        <h5 class="mt-4">
+            Jegyek
+        </h5>
+
+    `;
+
+
+    totals.tickets
+        .forEach(ticket => {
+
+            html += `
+
+                <div class="summary-line">
+
+                    <span>
+                        ${escapeHtml(ticket.name)}
+                        × ${ticket.quantity}
+                    </span>
+
+                    <strong>
+                        ${money(
+                            ticket.price *
+                            ticket.quantity
+                        )}
+                    </strong>
+
+                </div>
+
+            `;
+
+        });
+
+
+    html += `
+
+        <h5 class="mt-4">
+            Étkezés
+        </h5>
+
+    `;
+
+
+    totals.people
+        .forEach((person, index) => {
+
+            html += `
+
+                <div class="mb-3">
+
+                    <strong>
+                        ${index + 1}. személy:
+                        ${escapeHtml(person.name)}
+                    </strong>
+
+                    <div>
+                        Reggeli:
+                        ${escapeHtml(person.breakfast)}
+                        ${person.breakfastPrice > 0
+                            ? " – " + money(person.breakfastPrice)
+                            : ""}
+                    </div>
+
+                    <div>
+                        Ebéd:
+                        ${escapeHtml(person.lunch)}
+                        ${person.lunchPrice > 0
+                            ? " – " + money(person.lunchPrice)
+                            : ""}
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+
+    document
+        .getElementById(
+            "receiptContent"
+        )
+        .innerHTML =
+        html;
+
+}
+
+
+/* =========================================================
+   KÖZLEMÉNY MÁSOLÁSA
+   ========================================================= */
+
+
+document
+    .getElementById("copyNote")
+    .addEventListener(
+        "click",
+        async () => {
+
+            const note =
+                document
+                    .getElementById(
+                        "revolutNote"
+                    )
+                    .value;
+
+
+            try {
+
+                await navigator.clipboard
+                    .writeText(note);
+
+
+                const button =
+                    document.getElementById(
+                        "copyNote"
+                    );
+
+
+                const original =
+                    button.textContent;
+
+
+                button.textContent =
+                    "✓ Kimásolva!";
+
+
+                setTimeout(() => {
+
+                    button.textContent =
+                        original;
+
+                }, 2000);
+
+
+            } catch {
+
+                alert(
+                    "A közleményt nem sikerült automatikusan másolni."
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   ÚJ RENDELÉS
+   ========================================================= */
+
+
+document
+    .getElementById("newOrder")
+    .addEventListener(
+        "click",
+        () => {
+
+            location.reload();
+
+        }
+    );
+
+
+/* =========================================================
+   KEZDŐ ÁLLAPOT
+   ========================================================= */
+
+
+updatePeople();
+
+updateSummary();
+
+</script>
+
+
 </body>
 </html>
