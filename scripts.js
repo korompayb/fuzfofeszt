@@ -4,7 +4,7 @@ const GALLERY_DATA = {
                 
             ], */
             "2025": [
-                { name: "Nyitó buli pillanatok", date: "2025.09.27.", path: "2025/IMG_4341.JPG" },
+                { name: "Nyitó buli pillanatok", date: "2025.09.27.", path: "2025/borito.jpg" },
                 { name: "Fő színpad - Koncert", date: "2025.09.27.", path: "2025/IMG_6374.jpeg" },
                 { name: "Tábortűz és hangulat", date: "2025.09.27.", path: "2025/IMG_6152.jpeg" }
             ]
