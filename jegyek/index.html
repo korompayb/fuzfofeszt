@@ -247,18 +247,23 @@
                     </h3>
 
 
-                    <!-- ELŐVÉTEL -->
+                    <!-- BELÉPŐJEGY -->
 
-                    <div class="ticket-card" data-ticket="Elővételi jegy" data-price="2500">
+                    <div class="ticket-card " data-ticket="Belépőjegy" data-price="3000" style=" margin: 30px auto; 
+                                    /* REVOLUT HÁTTÉR GRADIENS */
+                                    background: linear-gradient(90deg, #ffffff 0%, #a3c9c7 100%);
+                                    border: 1px solid #fdfdfd; 
+                                    box-shadow: #a3c9c7 0px 0px 50px 15px;
+                                ">
 
                         <div>
 
                             <h5>
-                                Elővételi jegy
+                                Belépőjegy
                             </h5>
 
                             <span class="ticket-price">
-                                2500 Ft / db
+                                3000 Ft / db
                             </span>
 
                         </div>
@@ -280,6 +285,38 @@
 
                     </div>
 
+                    <!-- ÉTKEZÉSI JEGY -->
+
+                    <div class="ticket-card" data-ticket="Étkezés" data-price="0" >
+
+                        <div>
+
+                            <h5>
+                                Étkezés
+                            </h5>
+
+                            <span class="ticket-price">
+                                Csak ételt szeretnék
+                            </span>
+
+                        </div>
+
+
+                        <div class="quantity-control">
+
+                            <button type="button" class="minus">
+                                −
+                            </button>
+
+                            <input type="number" value="0" min="0" class="quantity">
+
+                            <button type="button" class="plus">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
 
                     <!-- SZEMÉLYEK -->
 
@@ -549,21 +586,17 @@
 
             breakfast: {
 
-                "Kakaós csiga": 700,
-
-                "Semmi": 0
+                
 
             },
 
             lunch: {
 
-                "Lángos": 1200,
+                "Bruschetta": 2500,
 
-                "Pörkölt": 1800,
+                "Pulled Pork szendvics": 2500,
 
-                "Gulyásleves": 1500,
-
-                "Semmi": 0
+                "Nem kér": 0
 
             }
 
@@ -688,12 +721,12 @@
                         breakfast:
                             card.querySelector(
                                 'input[name^="breakfast-"]:checked'
-                            )?.value || "Semmi",
+                            )?.value || "Nincs",
 
                         lunch:
                             card.querySelector(
                                 'input[name^="lunch-"]:checked'
-                            )?.value || "Semmi"
+                            )?.value || "Nincs"
 
                     });
 
@@ -710,10 +743,10 @@
 
 
                 const breakfast =
-                    old.breakfast || "Semmi";
+                    old.breakfast || "Nincs";
 
                 const lunch =
-                    old.lunch || "Semmi";
+                    old.lunch || "Nincs";
 
 
                 const card =
@@ -736,7 +769,7 @@
                 value="${escapeHtml(old.name || "")}">
 
 
-            <h5>Reggeli</h5>
+            <!-- <h5>Reggeli</h5> -->
 
             ${createFoodOptions(
                     "breakfast",
@@ -746,9 +779,9 @@
                 )}
 
 
-            <h5 class="mt-4">
+            <!--h5 class="mt-4">
                 Ebéd
-            </h5>
+            </h5-->
 
             ${createFoodOptions(
                     "lunch",
