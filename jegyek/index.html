@@ -74,6 +74,8 @@
             margin-bottom: 10px;
             cursor: pointer;
             transition: .2s;
+            display: flex;
+            align-items: center;
         }
 
         .food-option:hover {
@@ -81,11 +83,19 @@
         }
 
         .food-option input {
-            margin-right: 10px;
+            margin-right: 15px;
+        }
+
+        .food-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
         }
 
         .food-price {
-            float: right;
+            margin-left: auto;
             font-weight: 700;
             color: #a3c9c7;
         }
@@ -249,7 +259,7 @@
 
                     <!-- BELÉPŐJEGY -->
 
-                    <div class="ticket-card " data-ticket="Belépőjegy" data-price="3000" style=" margin: 30px auto; 
+                    <div class="ticket-card " data-ticket="Belépőjegy" data-price="3500" style=" margin: 30px auto; 
                                     /* REVOLUT HÁTTÉR GRADIENS */
                                     background: linear-gradient(90deg, #ffffff 0%, #a3c9c7 100%);
                                     border: 1px solid #fdfdfd; 
@@ -263,7 +273,7 @@
                             </h5>
 
                             <span class="ticket-price">
-                                3000 Ft / db
+                                3500 Ft / db
                             </span>
 
                         </div>
@@ -592,11 +602,13 @@
 
             lunch: {
 
-                "Bruschetta": 2500,
+                "Burattás Bruschetta": { price: 2500, image: "../gallery/Buratta_Bruschetta.png" },
 
-                "Pulled Pork szendvics": 2500,
+                "Pármai sonkás Bruschetta": { price: 2500, image: "../gallery/ParmaiSonkas_Bruschetta.png" },
 
-                "Nem kér": 0
+                "Pulled Pork szendvics": { price: 2500, image: "../gallery/pulled_pork.jpeg" },
+
+                "Nem kér": { price: 0, image: null }
 
             }
 
@@ -831,7 +843,10 @@
 
 
             Object.entries(foods)
-                .forEach(([name, price]) => {
+                .forEach(([name, data]) => {
+
+                    const price = typeof data === 'object' && data !== null ? data.price : data;
+                    const image = typeof data === 'object' && data !== null ? data.image : null;
 
                     const checked =
                         name === selected
@@ -841,7 +856,7 @@
 
                     html += `
 
-                <label class="food-option d-block">
+                <label class="food-option">
 
                     <input
                         type="radio"
@@ -849,7 +864,9 @@
                         value="${escapeHtml(name)}"
                         ${checked}>
 
-                    ${escapeHtml(name)}
+                    ${image ? `<img src="${image}" alt="${escapeHtml(name)}" class="food-image">` : ""}
+                    
+                    <span class="food-name">${escapeHtml(name)}</span>
 
                     <span class="food-price">
 
@@ -960,12 +977,14 @@
                         )?.value || "Semmi";
 
 
-                    const breakfastPrice =
-                        FOOD.breakfast[breakfast] || 0;
+                    const breakfastItem = FOOD.breakfast[breakfast];
+                    const breakfastPrice = 
+                        (typeof breakfastItem === 'object' && breakfastItem !== null ? breakfastItem.price : breakfastItem) || 0;
 
 
-                    const lunchPrice =
-                        FOOD.lunch[lunch] || 0;
+                    const lunchItem = FOOD.lunch[lunch];
+                    const lunchPrice = 
+                        (typeof lunchItem === 'object' && lunchItem !== null ? lunchItem.price : lunchItem) || 0;
 
 
                     people.push({
