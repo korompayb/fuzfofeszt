@@ -4,6 +4,11 @@ body {
     color: #3a3a3a;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .navbar {
     background: #e6f2f0;
     border-radius: 16px;
@@ -27,6 +32,30 @@ body {
 
 .nav-link:hover {
     color: #a3c9c7 !important;
+}
+
+.navbar-toggler {
+    border-color: rgba(123, 143, 161, 0.35);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(163, 201, 199, 0.4);
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        padding-top: 0.75rem;
+    }
+
+    .navbar-nav .nav-link {
+        margin-right: 0;
+        padding: 0.5rem 0.25rem;
+    }
+
+    .navbar-nav .notif-wrap {
+        justify-content: flex-start;
+        padding: 0.25rem;
+    }
 }
 
 .hero {
@@ -447,5 +476,9 @@ input[type=number] {
 
     .navbar-brand {
         font-size: 1.2rem;
+    }
+
+    .card-img-top {
+        height: 150px;
     }
 }
