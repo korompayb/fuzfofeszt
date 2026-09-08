@@ -65,11 +65,12 @@ window.FUZFO_POSTS = [
             <h6>Zene</h6>
             <p>Nagyon nagyon izgi és menő lett a zenei felhozatal :))</p>
             <ul class="notif-lineup">
-                <li><strong>20:00–21:00</strong> Zúzmó</li>
-                <li><strong>22:00–23:00</strong> BashElán</li>
-                <li><strong>23:00–01:00</strong> DJ ANOS</li>
-                <li><strong>01:00–02:00</strong> fenyœmez</li>
-                <li><strong>02:00–03:00</strong> CTRL-D</li>
+                <li><strong>20:00-21:00</strong> Zúzmó</li>
+                <li><strong>21:30- 22:30</strong>  BashElán </li>
+                <li><strong>22:30-00:00</strong> DJ ANOS</li>
+                <li><strong>00:00-01:00</strong> kira-kø</li>
+                <li><strong>01:00-02:00</strong> fenyœmez </li>
+                <li><strong>02:00-03:00</strong> CTRL-D</li>
             </ul>
         `
     }
