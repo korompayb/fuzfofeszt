@@ -16,17 +16,7 @@
 
 <body>
     <div class="container py-4">
-        <nav class="navbar navbar-expand-lg mb-4">
-            <a class="navbar-brand" href="../">FűzfőFeszt 26'</a>
-            <ul class="nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="../">Kezdőlap</a></li>
-                <li class="nav-item"><a class="nav-link" href="../index.html#programok">Programok</a></li>
-                <li class="nav-item"><a class="nav-link" href="../jegyek">Jegyek</a></li>
-                <li class="nav-item"><a class="nav-link" href="../index.html#helyszin">Helyszín</a></li>
-                <li class="nav-item"><a class="nav-link" href="/gallery/">Galéria</a></li>
-                <li class="nav-item"><a class="nav-link" href="../index.html#kapcsolat">Kapcsolat</a></li>
-            </ul>
-        </nav>
+        <div id="site-navbar"></div>
         <section class="hero">
             <h1>Programterv</h1>
         </section>
@@ -36,7 +26,7 @@
 
             <p>Részletek hamarosan</p>
 
-            <div class="row g-5"  style="filter: blur(10px);">
+            <div class="row g-5" >
 
                 <!-- PROGRAMTERV -->
                 <div class="col-lg-5" >
@@ -64,12 +54,12 @@
                                     <span class="program-label">JÁTÉK</span>
                                 </div>
                                 <div class="col-2">
-                                    <div class="program-time">12:00</div>
+                                    <div class="program-time">délután</div>
                                 </div>
                             </div>
                             <div class="program-content">
-                                <h3>Méta</h3>
-                                <p>Csapatok, ütők, labda és egy kis versengés.</p>
+                                <h3>Röpi, Foci, Sörpong</h3>
+                                <p>Készülj fel a FűzfőFeszt legkeményebb versenyeire!</p>
                             </div>
                         </div>
 
@@ -79,11 +69,11 @@
                                     <span class="program-label">KREATÍV</span>
                                 </div>
                                 <div class="col-2">
-                                    <div class="program-time">14:00</div>
+                                    <div class="program-time">délután</div>
                                 </div>
                             </div>
                             <div class="program-content">
-                                <h3>Batikolás</h3>
+                                <h3>Batikolás, Arcfestés, Papírsárkánykészítés</h3>
                                 <p>Kreatív programok 14:00 és 17:00 között.</p>
                             </div>
                         </div>
@@ -94,7 +84,7 @@
                                     <span class="program-label">VERSENY</span>
                                 </div>
                                 <div class="col-2">
-                                    <div class="program-time">16:00</div>
+                                    <div class="program-time">délután</div>
                                 </div>
                             </div>
                             <div class="program-content">
@@ -119,7 +109,7 @@
                 <div class="col-lg-7">
 
                     <div class="music-header">
-                        <span>Este 9:00-től</span>
+                        <span>Este</span>
                         <h2>Zene egész éjjel</h2>
                         <p>Válogatott DJ-k és előadók gondoskodnak a FűzfőFeszt hangulatáról.</p>
                     </div>
@@ -128,12 +118,12 @@
 
                         <div class="col-sm-6 col-xl-4">
                             <div class="card music-card h-100">
-                                <img src="../gallery//aramlas.jpg" class="card-img-top" alt="Áramlás">
+                                <img src="../gallery//zuzmo.png" class="card-img-top" alt="Zúzmo">
                                 <div class="card-body">
                                     <small>FELLÉPŐ</small>
-                                    <h5 class="card-title">Áramlás</h5>
+                                    <h5 class="card-title">Zúzmó</h5>
                                     <p class="card-text">
-                                        Egy fiatal, újpesti gyökerű magyar alternatív könnyűzenei zenekar.
+                                        alternatív
                                     </p>
                                 </div>
                             </div>
@@ -144,9 +134,9 @@
                                 <img src="../gallery//spotify.png" class="card-img-top" alt="Spotify szett">
                                 <div class="card-body">
                                     <small>DJ SET</small>
-                                    <h5 class="card-title">Spotify szett</h5>
+                                    <h5 class="card-title">DJ ANOS</h5>
                                     <p class="card-text">
-                                        Válogatott zenék a fesztivál hangulatának megalapozásához.
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -154,12 +144,12 @@
 
                         <div class="col-sm-6 col-xl-4">
                             <div class="card music-card h-100">
-                                <img src="../gallery//trapkapitany.png" class="card-img-top" alt="UnFair">
+                                <img src="../gallery//bashelan.png" class="card-img-top" alt="UnFair">
                                 <div class="card-body">
                                     <small>FELLÉPŐ</small>
-                                    <h5 class="card-title">UnFair</h5>
+                                    <h5 class="card-title">BashElán</h5>
                                     <p class="card-text">
-                                        trapkapitany
+                                        Népzene
                                     </p>
                                 </div>
                             </div>
@@ -182,8 +172,8 @@
                             <div class="card music-card h-100">
                                 <img src="../gallery//spotify.png" class="card-img-top" alt="Fenyoemez">
                                 <div class="card-body">
-                                    <small>DJ SET</small>
-                                    <h5 class="card-title">Fenyoemez</h5>
+                                    <small>FELLÉPŐ</small>
+                                    <h5 class="card-title">fenyœmez</h5>
                                     <p class="card-text">
                                         -
                                     </p>
@@ -203,7 +193,8 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/scripts.js"></script>
+    <script src="/posts.js"></script>
+    <script src="/navbar.js"></script>
 </body>
 
 </html>
