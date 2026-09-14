@@ -41,6 +41,50 @@
             background-size: 55% 55%;
         }
 
+        #carouselExampleAutoplaying .carousel-item {
+            height: clamp(220px, 38vw, 413px);
+        }
+
+        #carouselExampleAutoplaying .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        #carouselExampleAutoplaying .hero .btn {
+            align-self: center;
+        }
+
+        @media (max-width: 576px) {
+            #carouselExampleAutoplaying .carousel-item {
+                height: clamp(360px, 100vw, 430px);
+            }
+
+            #carouselExampleAutoplaying .carousel-control-prev,
+            #carouselExampleAutoplaying .carousel-control-next {
+                width: 3rem;
+            }
+
+            #carouselExampleAutoplaying .carousel-control-prev-icon,
+            #carouselExampleAutoplaying .carousel-control-next-icon {
+                padding: 1rem;
+            }
+
+            #carouselExampleAutoplaying .hero {
+                padding: 1.5rem 3rem;
+                text-align: center;
+            }
+
+            #carouselExampleAutoplaying .hero h1 {
+                font-size: clamp(1.7rem, 8vw, 2.4rem);
+            }
+
+            #carouselExampleAutoplaying .hero p {
+                font-size: .9rem;
+            }
+        }
+
     </style>
 </head>
 
@@ -48,7 +92,7 @@
     <div class="full-screen-backdrop"></div>
     <div class="container py-4">
         <div id="site-navbar"></div>
-        <div id="carouselExampleAutoplaying" class="carousel slide  mb-4" data-bs-ride="carousel">
+        <div id="carouselExampleAutoplaying" class="carousel slide mb-4" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button  type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -57,8 +101,8 @@
                 
             </div>
             <div class="carousel-inner rounded">
-                <div class="carousel-item active rounded" style="background-size: cover;  background-position: center;  background-repeat: no-repeat;  width: 100%;  height: 413px;">
-                    <section class="hero rounded">
+                <div class="carousel-item active rounded overflow-hidden">
+                    <section class="hero rounded h-100 d-flex flex-column justify-content-center">
                         <h1>FűzfőFeszt 2026</h1>
 
                         <p>🎉 Vége a fesztiválnak – köszönjünk mindenkinek, aki velünk ünnepelt Balatonfűzfőn! 🎉<br>
@@ -70,7 +114,8 @@
                         </div>
                     </section>
                 </div>
-                <div class="carousel-item" style="background-image: url(gallery//2026//HERO.jpg);  background-size: cover;  background-position: center;  background-repeat: no-repeat;  width: 100%;  height: 413px; ">
+                <div class="carousel-item rounded overflow-hidden">
+                    <img src="gallery/2026/HERO.jpg" alt="FűzfőFeszt hangulatkép">
                 </div>
                 <!-- <div class="carousel-item" style="background-image: url(gallery//2025//borito.jpg); background-size: cover;  background-position: center;  background-repeat: no-repeat;  width: 100%;  height: 413px; ">
                     
