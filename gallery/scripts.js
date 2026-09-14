@@ -1,8 +1,11 @@
 const GALLERY_DATA = {
-            /* "2026": [
-                { name: "Feltöltés alatt", date: "N/A", path: "2026/01_osszegzo.jpg" }
-                
-            ], */
+            "2026": [
+                { name: "Rendezvény kezdete 1.", date: "2026.09.12.", path: "2026/1.jpg" },
+                { name: "Rendezvény kezdete 2.", date: "2026.09.12.", path: "2026/2.jpg" },
+                { name: "Rendezvény kezdete 3.", date: "2026.09.12.", path: "2026/3.jpg" },
+                { name: "Rendezvény kezdete 4.", date: "2026.09.12.", path: "2026/molino_CHATGPT.png" },
+                { name: "Rendezvény kezdete 5.", date: "2026.09.12.", path: "2026/5.jpg" }
+            ],
             "2025": [
                 { name: "Nyitó buli pillanatok", date: "2025.09.27.", path: "2025/borito.jpg" },
                 { name: "Fő színpad - Koncert", date: "2025.09.27.", path: "2025/IMG_6374.jpeg" },

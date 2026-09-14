@@ -5,7 +5,8 @@
     var NAVBAR_HTML = `
         <nav class="navbar navbar-expand-lg mb-4">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">FűzfőFeszt 26'</a>
+                <a class="navbar-brand" href="/"> <img src="/gallery/2026/logo.png" style="width: 30%; height: auto;" alt="FűzfőFeszt logó" class="navbar-logo"></a>
+           
                 <div class="d-flex align-items-center order-lg-2">
                     <!-- ÉRTESÍTÉSEK - mindig látható, nem kerül a hamburger menübe -->
                     <div class="notif-wrap">
